@@ -110,3 +110,33 @@
 		}
 	}
 
+	if (!function_exists('yes_no_ratio'))
+	{
+		/*
+		 * Calculates a yes/no ratio where the biggest value return 1 and the lowest the cross-multiplication result
+		 * Example: 
+		 *		<div class="rating">
+		 *			<span class="yes" style="width:<?=round(yes_no_ratio($votes->yes, $votes->no)*100)?>%;">oui</span>
+		 *			<span class="no" style="width:<?=round(yes_no_ratio($votes->no, $votes->yes)*100)?>%;">non</span>
+		 *		</div>
+		 * Renders as: http://grab.by/zqv0
+		 */
+
+		function yes_no_ratio($yes, $no)
+		{
+			if ($yes > $no)
+			{
+				return 1;
+			}
+			elseif ($no == 0)
+			{
+				return 0;
+			}
+			else
+			{
+				return $yes/$no;
+			}
+		}
+	}
+
+
