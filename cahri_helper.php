@@ -141,4 +141,12 @@
 		}
 	}
 
-
+	if( ! function_exists('uncamelize'))
+	{
+	    function uncamelize($str, $delimiter=' ')
+	    {
+	        $str = strtolower(preg_replace('/([A-Z])/', $delimiter.'$1', $str));
+	        return $str;
+	    }
+	}
+	
