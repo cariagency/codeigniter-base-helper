@@ -149,4 +149,11 @@
 	        return $str;
 	    }
 	}
-	
+
+	if( ! function_exists('is_foreachable'))
+	{
+		function  is_foreachable(&$var)
+		{
+  			return  isset($var)  &&  (is_array($var)  ||  ($var  instanceof  Traversable));
+		}
+	}
