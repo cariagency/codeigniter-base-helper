@@ -34,13 +34,30 @@
 	    }
 	}
 
+	/*
+	 *	Returns the safe referrer, ie. without redirecting to a third-party website
+	 */
 	if (!function_exists('safe_referrer'))
 	{
-		function safe_referrer()
+		function safe_referrer($sinon = '')
 		{
 			$CI =& get_instance();
 			$CI->load->library('user_agent');
-			return $CI->agent->referrer();
+			return sinon(internal_link($CI->agent->referrer()), site_url($sinon));
+	    }
+	}
+
+	/*
+	 *	Returns a safe link: if we are on the website, returns the link, if we go elsewhere, returns false
+	 */
+	if (!function_exists('internal_link'))
+	{
+		function internal_link($link)
+		{
+			if (!$link) return FALSE;
+			if (!preg_match('/^https?:\/\//', $link)) $link = site_url($link);
+			if (strpos($link, site_url()) === 0) return $link;
+			else return FALSE;
 	    }
 	}
 
