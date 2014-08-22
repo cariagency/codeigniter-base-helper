@@ -183,7 +183,7 @@
 
 		function shorten_id($id)
 		{
-  			$id = base_convert($id, 10, 24);
+  			$id = base_convert($id, 10, 34);
   			$id = strtoupper($id);
   			$id = str_replace('O', 'Z', $id);
   			$id = str_replace('I', 'Y', $id);
