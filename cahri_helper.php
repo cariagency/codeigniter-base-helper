@@ -174,3 +174,19 @@
   			return  isset($var)  &&  (is_array($var)  ||  ($var  instanceof  Traversable));
 		}
 	}
+
+	if( ! function_exists('shorten_id'))
+	{
+		/*
+		 * Shortens an ID and prevents similar characters as 0 and O and 1 and I.
+		 */
+
+		function shorten_id($id)
+		{
+  			$id = base_convert($id, 10, 24);
+  			$id = strtoupper($id);
+  			$id = str_replace('O', 'Z', $id);
+  			$id = str_replace('I', 'Y', $id);
+  			return $id;
+		}
+	}
